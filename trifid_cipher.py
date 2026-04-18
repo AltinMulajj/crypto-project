@@ -4,17 +4,7 @@ import os
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
 
 def build_cube(key: str) -> list:
-    """
-    Ndërton kubin 3x3x3 bazuar në çelësin e dhënë.
 
-    Logjika:
-      - Çelësi vendoset i pari (pa shkronja të përsëritura)
-      - Pastaj mbushen shkronjat e mbetura nga ALPHABET
-      - Rezultati është një listë 3D: cube[layer][row][col]
-
-    Shembull me key="KEY":
-      Renditja: K, E, Y, A, B, C, D, F, G, H, I, J, ...
-    """
     key = key.upper().replace("J", "I")  
 
     seen = []
@@ -37,12 +27,7 @@ def build_cube(key: str) -> list:
 
 
 def build_lookup(cube: list) -> dict:
-    """
-    Krijon fjalorin {shkronjë: (layer, row, col)} për kërkim të shpejtë.
 
-    Pa këtë fjalor, do të duhet të kërkojmë nëpër të gjithë kubin
-    për çdo shkronjë — O(27) per karakter. Me fjalor është O(1).
-    """
     lookup = {}
     for l in range(3):
         for r in range(3):
@@ -54,26 +39,7 @@ def build_lookup(cube: list) -> dict:
 
 
 def encrypt(plaintext: str, key: str, period: int = 5) -> str:
-    """
-    Enkripton tekstin me Trifid Cipher.
 
-    Args:
-        plaintext : teksti origjinal
-        key       : çelësi për ndërtimin e kubit
-        period    : madhësia e grupeve (default 5)
-
-    Returns:
-        Teksti i enkriptuar (ciphertext)
-
-    Si funksionon hap pas hapi:
-      1. Pastrojmë tekstin — vetëm shkronja, J→I, uppercase
-      2. Ndajmë në grupe sipas period (p.sh. period=5 → grupe prej 5)
-      3. Për secilin grup:
-         a. Çdo shkronjë → koordinata (layer, row, col)
-         b. Grumbullojmë: layers=[], rows=[], cols=[]
-         c. Bashkojmë: combined = layers + rows + cols
-         d. Lexojmë combined me grupe prej 3 → shkronjë e re
-    """
     cube   = build_cube(key)
     lookup = build_lookup(cube)
 
@@ -93,7 +59,6 @@ def encrypt(plaintext: str, key: str, period: int = 5) -> str:
     for i in range(0, len(clean), period):
         group = clean[i:i + period]
 
-        # Hapi 1: Gjejmë koordinatat për çdo shkronjë në grup
         layers, rows, cols = [], [], []
         for ch in group:
             l, r, c = lookup[ch]
@@ -101,10 +66,8 @@ def encrypt(plaintext: str, key: str, period: int = 5) -> str:
             rows.append(r)
             cols.append(c)
 
-        # Hapi 2: Bashkojmë të gjitha koordinatat: layers + rows + cols
         combined = layers + rows + cols
 
-        # Hapi 3: Lexojmë grupe prej 3 nga combined → shkronjë e re
         for j in range(0, len(combined), 3):
             l, r, c = combined[j], combined[j + 1], combined[j + 2]
             ciphertext += cube[l][r][c]
@@ -114,23 +77,7 @@ def encrypt(plaintext: str, key: str, period: int = 5) -> str:
 
 
 def decrypt(ciphertext: str, key: str, period: int = 5) -> str:
-    """
-    Dekripson tekstin e enkriptuar me Trifid Cipher.
 
-    Args:
-        ciphertext : teksti i enkriptuar
-        key        : çelësi (duhet të jetë i njëjtë me enkriptimin)
-        period     : madhësia e grupeve (duhet të jetë i njëjtë me enkriptimin)
-
-    Returns:
-        Teksti origjinal (plaintext)
-
-    Si funksionon hap pas hapi:
-      1. Çdo shkronjë e ciphertextit → koordinata (layer, row, col)
-      2. Shpërndajmë koordinatat në listë të sheshtë (flat)
-      3. Ndajmë flat në tri pjesë: layers, rows, cols (secila me n karaktere)
-      4. Rindërtojmë shkronjat origjinale: cube[layers[j]][rows[j]][cols[j]]
-    """
     cube   = build_cube(key)
     lookup = build_lookup(cube)
 
@@ -169,10 +116,7 @@ def decrypt(ciphertext: str, key: str, period: int = 5) -> str:
 
 
 def display_cube(cube: list):
-    """
-    Shfaq kubin 3x3x3 në terminal në formë të lexueshme.
-    Secili layer shfaqet si grid 3x3.
-    """
+
     print("\n  Kubi 3x3x3 (Layer → Row → Col):\n")
     for l in range(3):
         print(f"  Layer {l + 1}:")
@@ -182,7 +126,7 @@ def display_cube(cube: list):
 
 
 def clear():
-    """Pastron ekranin e terminalit (Linux/Windows)."""
+
     os.system("cls" if os.name == "nt" else "clear")
 
 
@@ -193,10 +137,7 @@ def banner():
 
 
 def get_period() -> int:
-    """
-    Merr period-in nga përdoruesi me validim.
-    Nëse përdoruesi shtyp Enter, përdoret vlera default 5.
-    """
+
     while True:
         try:
             p = int(input("  Period (default 5, rekomandohet 3-10): ") or "5")
@@ -208,10 +149,7 @@ def get_period() -> int:
 
 
 def menu():
-    """
-    Menyja kryesore interaktive e Trifid Cipher.
-    Ofron enkriptim, dekriptim, shfaqje të kubit dhe demo.
-    """
+
     while True:
         clear()
         banner()
