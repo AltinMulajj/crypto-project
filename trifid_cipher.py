@@ -27,7 +27,7 @@ def build_cube(key: str) -> list:
 
 
 def build_lookup(cube: list) -> dict:
-  
+
     lookup = {}
     for l in range(3):
         for r in range(3):
@@ -39,7 +39,7 @@ def build_lookup(cube: list) -> dict:
 
 
 def encrypt(plaintext: str, key: str, period: int = 5) -> str:
-   
+
     cube   = build_cube(key)
     lookup = build_lookup(cube)
 
@@ -59,7 +59,6 @@ def encrypt(plaintext: str, key: str, period: int = 5) -> str:
     for i in range(0, len(clean), period):
         group = clean[i:i + period]
 
-        # Hapi 1: Gjejmë koordinatat për çdo shkronjë në grup
         layers, rows, cols = [], [], []
         for ch in group:
             l, r, c = lookup[ch]
@@ -67,10 +66,8 @@ def encrypt(plaintext: str, key: str, period: int = 5) -> str:
             rows.append(r)
             cols.append(c)
 
-        # Hapi 2: Bashkojmë të gjitha koordinatat: layers + rows + cols
         combined = layers + rows + cols
 
-        # Hapi 3: Lexojmë grupe prej 3 nga combined → shkronjë e re
         for j in range(0, len(combined), 3):
             l, r, c = combined[j], combined[j + 1], combined[j + 2]
             ciphertext += cube[l][r][c]
@@ -80,7 +77,7 @@ def encrypt(plaintext: str, key: str, period: int = 5) -> str:
 
 
 def decrypt(ciphertext: str, key: str, period: int = 5) -> str:
-    
+
     cube   = build_cube(key)
     lookup = build_lookup(cube)
 
@@ -119,7 +116,7 @@ def decrypt(ciphertext: str, key: str, period: int = 5) -> str:
 
 
 def display_cube(cube: list):
-   
+
     print("\n  Kubi 3x3x3 (Layer → Row → Col):\n")
     for l in range(3):
         print(f"  Layer {l + 1}:")
@@ -129,6 +126,7 @@ def display_cube(cube: list):
 
 
 def clear():
+
     os.system("cls" if os.name == "nt" else "clear")
 
 
@@ -139,7 +137,7 @@ def banner():
 
 
 def get_period() -> int:
-    
+
     while True:
         try:
             p = int(input("  Period (default 5, rekomandohet 3-10): ") or "5")
@@ -151,7 +149,7 @@ def get_period() -> int:
 
 
 def menu():
-    
+
     while True:
         clear()
         banner()
