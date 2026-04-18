@@ -49,7 +49,7 @@ crypto-project/
 ### 1. Trifid Cipher
 
 Trifid Cipher është një algoritëm kriptografik klasik i shpikur nga
-Felix Delastelle në vitin 1901. Bën pjesë në kategorinë e **fractionation ciphers** — 
+Felix Delastelle në vitin 1901. Bën pjesë në kategorinë e **fractionation ciphers** —
 ai e "copëton" çdo shkronjë në koordinata dhe i rikombimon ato.
 
 **Si funksionon:**
@@ -91,8 +91,8 @@ Përdorej gjerësisht gjatë Luftës së Dytë Botërore.
 2. Nëse rreshti i fundit nuk plotësohet, shtohet **padding** me `X`.
 
 3. Kolonat **lexohen sipas renditjes alfabetike** të çelësit:  
-   `ANANASI` → renditja: `A(0) A(2) A(6) I(4) N(1) N(3) S(5)`  
-   → order: `[0, 2, 6, 4, 1, 3, 5]`
+   `ANANASI` → renditja: `A(0) A(2) A(4) I(6) N(1) N(3) S(5)`  
+   → order: `[0, 2, 4, 6, 1, 3, 5]`
 
 4. Rezultati i leximit kolona-kolona = **ciphertext**.
 
@@ -109,10 +109,10 @@ në pozicionet e tyre origjinale, pastaj lexon rresht pas rreshti.
 ===== CRYPTO MENU =====
 Zgjidhni opsionin: 1
 
--- TRIFID CIPHER: Enkriptim i shpejtë --
+-- TRIFID CIPHER: Enkriptim i shpejte --
 
 Teksti         : HELLO
-Çelësi         : PYTHON
+Celesi         : PYTHON
 Period (default 5): 5
 
 Ciphertext : OECEI
@@ -124,10 +124,10 @@ Ciphertext : OECEI
 ===== CRYPTO MENU =====
 Zgjidhni opsionin: 2
 
--- TRIFID CIPHER: Dekriptim i shpejtë --
+-- TRIFID CIPHER: Dekriptim i shpejte --
 
 Ciphertext     : OECEI
-Çelësi         : PYTHON
+Celesi         : PYTHON
 Period (default 5): 5
 
 Plaintext  : HELLO
@@ -137,7 +137,7 @@ Plaintext  : HELLO
 
 ```
 Teksti     : ATTACK
-Çelësi     : PYTHON
+Celesi     : PYTHON
 Period     : 5
 Encrypted  : PTTSSK
 Decrypted  : ATTACK
@@ -151,13 +151,13 @@ Decrypted  : ATTACK
 ===== CRYPTO MENU =====
 Zgjidhni opsionin: 3
 
--- COLUMNAR TRANSPOSITION: Enkriptim i shpejtë --
+-- COLUMNAR TRANSPOSITION: Enkriptim i shpejte --
 
 Teksti         : WEAREDISCOVERED
-Çelësi (default ANANASI):
+Celesi (default ANANASI):
 
 Ciphertext : WSDAOXEEXIEXECXRVXDRX
-Gjatësia   : 21 karaktere
+Gjatesia   : 21 karaktere
 ```
 
 ### Columnar Transposition — Dekriptim
@@ -166,10 +166,10 @@ Gjatësia   : 21 karaktere
 ===== CRYPTO MENU =====
 Zgjidhni opsionin: 4
 
--- COLUMNAR TRANSPOSITION: Dekriptim i shpejtë --
+-- COLUMNAR TRANSPOSITION: Dekriptim i shpejte --
 
 Ciphertext     : WSDAOXEEXIEXECXRVXDRX
-Çelësi (default ANANASI):
+Celesi (default ANANASI):
 
 Plaintext  : WEAREDISCOVEREDXXXXXX
 Shenim: shkronjat 'X' ne fund mund te jene padding.
@@ -178,7 +178,7 @@ Shenim: shkronjat 'X' ne fund mund te jene padding.
 ### Columnar Transposition — Tabela vizuale
 
 ```
-Zgjidhni opsionin: 6 → [3] Shfaq Tabelën
+Zgjidhni opsionin: 6 -> [3] Shfaq Tabelen
 
 Teksti origjinal : WEAREDISCOVERED
 
@@ -203,15 +203,15 @@ Zgjidhni opsionin: 7
 Teksti origjinal : CRYPTOGRAPHY
 
 [ TRIFID CIPHER ]
-Çelësi     : PYTHON   Period: 5
-Encrypted  : OECEINMKAB
+Celesi     : PYTHON   Period: 5
+Encrypted  : ATPBFNYFHDYY
 Decrypted  : CRYPTOGRAPHY
 Korrekte   : Po
 
 [ COLUMNAR TRANSPOSITION ]
-Çelësi     : ANANASI
-Encrypted  : CRTXYPOXGXRAXPHX
-Decrypted  : CRYPTOGRAPHYXXXX
+Celesi     : ANANASI
+Encrypted  : CRYPTYGXRAPHOX
+Decrypted  : CRYPTOGRAPHYXX
 Korrekte   : Po
 ```
 
@@ -219,8 +219,9 @@ Korrekte   : Po
 
 ## Autorët
 
-  Altin Mulaj
-  Eldi Krueziu
-  Elion Berisha
-Projekt i realizuar si pjesë e kursit **Siguuria Kibernetike**  
-Fakulteti i Inxhinierisë Elektrike dhe Informatikës
+- Altin Mulaj
+- Eldi Krueziu
+- Elion Berisha
+
+Projekt i realizuar si pjesë e kursit **Siguria e të dhënave**  
+Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike
