@@ -1,4 +1,8 @@
 import os
+import sys
+
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 
 import trifid_cipher
 import columnar_transposition
@@ -7,8 +11,10 @@ import columnar_transposition
 
 
 def clear():
-
-    os.system("cls" if os.name == "nt" else "clear")
+    try:
+        os.system("cls" if os.name == "nt" else "clear")
+    except Exception:
+        print("\n" * 5)
 
 
 def banner():

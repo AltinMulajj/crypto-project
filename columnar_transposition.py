@@ -66,7 +66,11 @@ def decrypt(ciphertext, key=KEY):
     return plaintext
 
 def clear():
-    os.system("cls" if os.name == "nt" else "clear")
+
+    try:
+        os.system("cls" if os.name == "nt" else "clear")
+    except Exception:
+        print("\n" * 5)
 
 def banner():
     print("=" * 50)
